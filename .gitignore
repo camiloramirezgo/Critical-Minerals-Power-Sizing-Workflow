@@ -1,0 +1,30 @@
+# Jupyter Notebook checkpoint files
+.ipynb_checkpoints/
+
+# Python compiled files
+__pycache__/
+*.pyc
+
+# Local Snakemake execution logs and metadata
+.snakemake/
+
+# Large media or archive references
+*.mp4
+*.zip
+*.pdf
+
+# Output directories
+OutputsJan2026/
+Outputs/
+
+# Sized output GPKGs/CSVs
+*.gpkg
+*.csv
+!GIS_data/**/.gitkeep
+
+# Ignore all datasets in GIS_data except the directory and .gitkeep files
+GIS_data/*
+!GIS_data/.gitkeep
+
+# Other
+.DS_Store
