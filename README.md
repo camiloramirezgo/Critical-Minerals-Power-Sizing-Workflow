@@ -100,17 +100,17 @@ The GIS inputs are structured by country for 14 target countries: Angola (AGO), 
 ### Create Environment
 Create the Conda environment from the provided [onsset_env.yml](onsset_env.yml) file. This ensures all spatial (GeoPandas, Rasterio, Fiona), plotting (Seaborn), and execution dependencies are correct.
 
-**Navigate to the workspace directory**
+Navigate to the workspace directory
 ```bash
 cd "path/to/Model"
 ```
 
-**Create the environment**
+Create the environment
 ```bash
 conda env create -f onsset_env.yml
 ```
 
-**Activate the environment**
+Activate the environment
 ```bash
 conda activate onsset_criticalmin
 ```
