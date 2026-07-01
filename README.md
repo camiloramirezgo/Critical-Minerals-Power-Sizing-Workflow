@@ -27,7 +27,7 @@ graph TD
 
 ### 1. Power Solution Decision Model
 For each mining site (cluster node), the model compares two main options over the project life (2023–2040):
-* **Off-Grid Solution (PV-Battery-Diesel Hybrid):** The model simulates 400 different configurations (combinations of PV arrays and diesel generators) using hourly solar irradiance and temperature profiles. The configuration that minimizes the Levelized Cost of Electricity (LCOE) while satisfying a Loss of Power Supply Probability (LPSP) limit of 1% is selected. Battery sizing is dynamically matched to daily demand.
+* **Off-Grid Solution (PV-Battery-Diesel Hybrid):** The model simulates different configurations (combinations of PV arrays and diesel generators) using hourly solar irradiance and temperature profiles. The configuration that minimizes the Levelized Cost of Electricity (LCOE) while satisfying a Loss of Power Supply Probability (LPSP) limit of 1% is selected. Battery sizing is dynamically matched to daily demand.
 * **Grid Connection Option:** The model calculates the capital cost of extending a High-Voltage (HV) transmission line from the nearest grid line or substation to the mine. It factors in grid generation costs (LCOE), transmission line costs per kilometer, grid capacities, and line losses (5%).
 
 **Decision Logic:** If the mine is located within 100 meters of the grid, grid connection is forced. Otherwise, if the national substation capacity utilization is under 50% and the grid extension LCOE is lower than the off-grid LCOE, the node is assigned **Grid Connection**. Otherwise, it defaults to **Off-Grid**.
@@ -72,16 +72,16 @@ The workspace includes the following files and scripts:
 The workflow draws from two primary input directories:
 
 ### 1. Global & Country GIS Data (`GIS_data/`)
-The GIS inputs are structured by country for 14 target countries: **Angola (AGO)**, **Botswana (BWA)**, **Burundi (BDI)**, **DRC (COD)**, **Kenya (KEN)**, **Madagascar (MDG)**, **Malawi (MWI)**, **Mozambique (MOZ)**, **Namibia (NAM)**, **South Africa (ZAF)**, **Tanzania (TZA)**, **Uganda (UGA)**, **Zambia (ZMB)**, and **Zimbabwe (ZWE)**.
+The GIS inputs are structured by country for 14 target countries: Angola (AGO), Botswana (BWA), Burundi (BDI), DRC (COD), Kenya (KEN), Madagascar (MDG), Malawi (MWI), Mozambique (MOZ), Namibia (NAM), South Africa (ZAF), Tanzania (TZA), Uganda (UGA), Zambia (ZMB), and Zimbabwe (ZWE).
 
-* **Administrative Boundaries (`{country}_admin0.gpkg`):** Country shapefiles representing administrative borders.
-* **Transmission Lines (`HV_lines.gpkg`):** High-voltage grid routing.
-* **Substations (`substations.gpkg`):** Geographic points for grid substations.
-* **GHI Solar Raster (`GHI.tif`):** Mean solar irradiance raster.
-* **Accessibility Raster (`accessibility_2015.tif`):** Travel time to cities, used to adjust diesel delivery costs to remote mines.
-* **Hourly Solar Curves (`{country_code_2}-2-pv.csv`):** Typical Meteorological Year (TMY) hourly datasets containing ambient temperature and solar PV capacity factors.
-* **Mining Locations (`GIS_data/MiningData/Locations/combined_node_locations_for_energy_conversion_{scope}_{constraint}.gpkg`):** GPKG layers containing geospatial node points representing mining sites.
-* **Water & Mine Production Targets (`GIS_data/MiningData/water/water_usage_by_location/combined_water_{scope}_{constraint}_{scenario}.csv`):** Cleaned CSVs containing production volumes (tonnes) for minerals, which trigger the Snakemake execution.
+* **Administrative Boundaries** (`{country}_admin0.gpkg`): Country shapefiles representing administrative borders.
+* **Transmission Lines** (`HV_lines.gpkg`): High-voltage grid routing.
+* **Substations** (`substations.gpkg`): Geographic points for grid substations.
+* **GHI Solar Raster** (`GHI.tif`): Mean solar irradiance raster.
+* **Accessibility Raster** (`accessibility_2015.tif`): Travel time to cities, used to adjust diesel delivery costs to remote mines.
+* **Hourly Solar Curves** (`{country_code_2}-2-pv.csv`): Typical Meteorological Year (TMY) hourly datasets containing ambient temperature and solar PV capacity factors.
+* **Mining Locations** (`GIS_data/MiningData/Locations/combined_node_locations_for_energy_conversion_{scope}_{constraint}.gpkg`): GPKG layers containing geospatial node points representing mining sites.
+* **Water & Mine Production Targets** (`GIS_data/MiningData/water/water_usage_by_location/combined_water_{scope}_{constraint}_{scenario}.csv`): Cleaned CSVs containing production volumes (tonnes) for minerals, which trigger the Snakemake execution.
 
 ### 2. Sizing Parameters (Root Model Directory)
 * **[min_processing_values_dict_New.xlsx](min_processing_values_dict_New.xlsx):** Contains country-specific electricity consumption intensities (kWh/tonne) by mineral and processing stage (e.g. mining, refining, precursor stage).
